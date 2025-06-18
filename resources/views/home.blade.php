@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel 12</title>
+@extends('layouts.app')
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
+@section('title', 'laravel12') 
+
+@push('css')
+    <style>
+        body{
+            background-color: #f3f3f3;
+        }
+    </style>
+@endpush
+
+@section('content')
     <div class="max-w-4xl mx-auto px-4">
-        
-        <x-alert2 type="danger" class="mb-4"> 
+
+        <x-alert2 type="danger" class="mb-4">
             <x-slot name='title'>ALERTA PAPU</x-slot>
-            
-            hola mundo. 
         </x-alert2>
 
-        <p>Hola mundo!</p>
+        <h1>hola mundo</h1>
     </div>
-</body>
-</html> 
+@endsection
