@@ -11,11 +11,13 @@
 <body>
     <div class="max-w-4xl mx-auto px-4">
         
-        <x-alert> 
+        <x-alert2 type="danger" class="mb-4"> 
             <x-slot name='title'>ALERTA PAPU</x-slot>
             
             hola mundo. 
-        </x-alert>
+        </x-alert2>
+
+        <p>Hola mundo!</p>
     </div>
 </body>
-</html>
+</html> 
