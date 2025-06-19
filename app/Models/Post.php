@@ -10,6 +10,13 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected function cast():array{
+        return [
+            'published_at' => 'datetime',
+            'is_active' => 'boolean',
+        ];
+    }
+
     protected function title():Attribute{
         return Attribute::make(
             set: function($value){
