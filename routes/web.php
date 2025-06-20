@@ -11,9 +11,12 @@ Route::get('/posts',[PostController::class, 'index']);
 
 Route::get('posts/create',[PostController::class, 'create']); 
 
-Route::get('/posts/{post}',[PostController::class, 'show']);
+Route::post('/posts', [PostController::class, 'store']);
 
-Route::get('prueba',function(){
-    $post = Post::find(1);
-    dd($post->is_active);
-});
+Route::get('/posts/{post}',action: [PostController::class, 'show']);
+
+Route::get('/posts/{post}/edit',[PostController::class,'edit']);
+
+Route::put('posts/{post}/edit', [PostController::class,'update']);
+
+Route::delete('/posts/{post}/delete',[PostController::class, 'destroy']);
