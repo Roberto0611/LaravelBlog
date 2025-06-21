@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        $posts  = Post::orderBy('id','desc')->get(); # obtener todos los posts desde la base de datos
+        $posts  = Post::orderBy('id','desc')->paginate(); 
         return view('posts.index',compact('posts')); # usamos compact para pasar la variable
     }
 
