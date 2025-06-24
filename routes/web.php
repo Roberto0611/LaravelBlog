@@ -21,6 +21,6 @@ Route::get('/', HomeController::class);
 
 // Route::delete('/posts/{post}/delete',[PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::resource('articulos',controller: PostController::class)
+Route::resource('articulos',PostController::class)
     ->parameters(['articulos' => 'post'])
     ->names('posts');
