@@ -17,13 +17,9 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-        $post = new Post();
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->category = $request->category;
-        $post->content = $request->content;
 
-        $post->save(); 
+        // Asignacion masiva
+        Post::create(attributes: $request->all());
 
         return redirect()->route('posts.index'); # redirigir 
     }
@@ -34,15 +30,8 @@ class PostController extends Controller
     }
 
     public function update(Request $request,Post $post){
-       // $post = Post::find($post); # recuperar de la bd
 
-        # asignar valores
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->category = $request->category;
-        $post->content = $request->content;
-
-        $post->save(); # guardar
+        $post->update($request->all());
     
         return redirect()->route('posts.show',$post);
     }

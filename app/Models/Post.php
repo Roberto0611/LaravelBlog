@@ -10,6 +10,17 @@ class Post extends Model
 {
     use HasFactory;
 
+    // protected $fillable = [
+    //     'title',
+    //     'slug',
+    //     'category',
+    //     'content'
+    // ];
+
+    protected $guarded =[
+        'is_active'
+    ];
+
     protected function cast():array{
         return [
             'published_at' => 'datetime',
