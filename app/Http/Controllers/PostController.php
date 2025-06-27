@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Mail\postCreatedMail;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -16,10 +19,13 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
 
         // Asignacion masiva
-        Post::create(attributes: $request->all());
+       $post = Post::create(attributes: $request->all());
+
+        // Enviar mail
+        Mail::to('prueba@prueba.com')->send(new postCreatedMail($post));
 
         return redirect()->route('posts.index'); # redirigir 
     }
@@ -30,6 +36,13 @@ class PostController extends Controller
     }
 
     public function update(Request $request,Post $post){
+
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'slug' => "required|unique:posts,slug,{$post->id}",
+            'category' => 'required',
+            'content' => 'required'
+        ]); 
 
         $post->update($request->all());
     

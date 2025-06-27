@@ -1,6 +1,18 @@
 <x-app-layout>
     <h1> Formulario para editar un post </h1>
 
+    <!-- show errors -->
+    @if ($errors->any())
+        <div>
+            <h2>Errores:</h2>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{route('posts.update',$post)}}" method="POST">
 
         @csrf
@@ -9,7 +21,7 @@
 
         <label>
             Titulo:
-            <input type="text" name="title" value="{{$post->title}}">
+            <input type="text" name="title" value="{{old('title',$post->title)}}">
         </label>
         <br>
         <br>
